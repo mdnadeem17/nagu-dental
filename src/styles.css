@@ -1,0 +1,478 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-tint: var(--surface-tint);
+
+  --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui;
+  --font-sans: "Inter", ui-sans-serif, system-ui;
+
+  --shadow-soft: 0 10px 30px -12px color-mix(in oklab, var(--primary) 18%, transparent);
+  --shadow-glow: 0 20px 60px -20px color-mix(in oklab, var(--primary) 45%, transparent);
+  --shadow-elevated:
+    0 30px 80px -30px color-mix(in oklab, var(--primary) 30%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--primary) 12%, transparent);
+  --shadow-snake:
+    0 0 20px 4px color-mix(in oklab, var(--primary) 40%, transparent),
+    0 0 60px 12px color-mix(in oklab, var(--primary) 20%, transparent),
+    0 0 100px 20px color-mix(in oklab, var(--primary) 10%, transparent);
+
+  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-glow) 100%);
+  --gradient-soft: linear-gradient(180deg, var(--surface-tint) 0%, var(--surface) 100%);
+  --gradient-hero: radial-gradient(60% 60% at 50% 0%, color-mix(in oklab, var(--primary) 18%, transparent) 0%, transparent 70%);
+}
+
+:root {
+  --radius: 1rem;
+  --section-py: 6rem; /* 96px */
+  @media (max-width: 640px) {
+    --section-py: 4rem; /* 64px */
+  }
+
+  /* Base */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.205 0.04 256);
+  --surface: oklch(0.985 0.005 240);
+  --surface-tint: oklch(0.97 0.02 235);
+
+  /* Cards / popovers */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.205 0.04 256);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.205 0.04 256);
+
+  /* Brand: Orange from user palette */
+  --primary: #f7a13b;
+  --primary-foreground: oklch(1 0 0);
+  --primary-glow: #ffbc6b;
+
+  /* Secondary Golden Yellow based on sign background */
+  --secondary: oklch(0.82 0.14 80);
+  --secondary-foreground: oklch(0.2 0.05 25);
+
+  /* Accent */
+  --accent: oklch(0.82 0.14 80);
+  --accent-foreground: oklch(0.2 0.05 25);
+
+  --muted: oklch(0.97 0.01 240);
+  --muted-foreground: oklch(0.55 0.03 250);
+
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.92 0.012 240);
+  --input: oklch(0.94 0.01 240);
+  --ring: oklch(0.7 0.15 230);
+
+  --chart-1: oklch(0.7 0.15 230);
+  --chart-2: oklch(0.72 0.13 185);
+  --chart-3: oklch(0.78 0.12 225);
+  --chart-4: oklch(0.65 0.18 260);
+  --chart-5: oklch(0.8 0.1 200);
+}
+
+.dark {
+  --background: oklch(0.18 0.03 256);
+  --foreground: oklch(0.98 0.005 240);
+  --surface: oklch(0.22 0.03 256);
+  --surface-tint: oklch(0.26 0.04 250);
+  --card: oklch(0.22 0.03 256);
+  --card-foreground: oklch(0.98 0.005 240);
+  --popover: oklch(0.22 0.03 256);
+  --popover-foreground: oklch(0.98 0.005 240);
+  --primary: #f7a13b;
+  --primary-foreground: oklch(0.18 0.03 256);
+  --primary-glow: #d68729;
+  --secondary: oklch(0.82 0.14 80);
+  --secondary-foreground: oklch(0.2 0.05 25);
+  --accent: oklch(0.82 0.14 80);
+  --accent-foreground: oklch(0.2 0.05 25);
+  --muted: oklch(0.28 0.03 250);
+  --muted-foreground: oklch(0.75 0.02 240);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.75 0.14 225);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background-color: color-mix(in oklab, white 70%, transparent);
+    backdrop-filter: saturate(150%) blur(14px);
+    -webkit-backdrop-filter: saturate(150%) blur(14px);
+    border: 1px solid color-mix(in oklab, var(--primary) 10%, white);
+  }
+  .glass-dark {
+    background-color: color-mix(in oklab, white 55%, transparent);
+    backdrop-filter: saturate(160%) blur(18px);
+    -webkit-backdrop-filter: saturate(160%) blur(18px);
+    border: 1px solid color-mix(in oklab, var(--primary) 12%, transparent);
+  }
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-hero-glow {
+    background: var(--gradient-hero);
+  }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-elevated { box-shadow: var(--shadow-elevated); }
+
+  .btn-primary {
+    background: var(--gradient-primary);
+    color: var(--primary-foreground);
+    box-shadow: 0 10px 30px -10px color-mix(in oklab, var(--primary) 60%, transparent);
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px -12px color-mix(in oklab, var(--primary) 70%, transparent);
+    filter: brightness(1.05);
+  }
+  .btn-ghost-primary {
+    background: white;
+    color: var(--primary);
+    border: 1px solid color-mix(in oklab, var(--primary) 30%, white);
+    transition: all .25s ease;
+  }
+  .btn-ghost-primary:hover {
+    background: color-mix(in oklab, var(--primary) 8%, white);
+    border-color: var(--primary);
+  }
+
+  .card-hover {
+    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-glow);
+    border-color: color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(70px);
+    opacity: 0.5;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  /* ── Keyframes ─────────────────────────────────────────── */
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    33%       { transform: translateY(-18px) translateX(8px); }
+    66%       { transform: translateY(-8px) translateX(-6px); }
+  }
+  .animate-float {
+    animation: float-slow 10s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 50%, transparent); }
+    50%       { box-shadow: 0 0 0 18px color-mix(in oklab, var(--primary) 0%, transparent); }
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 2.4s ease-out infinite;
+    will-change: box-shadow;
+  }
+
+  @keyframes gradient-shift {
+    0%,100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 12s ease infinite;
+  }
+
+  /* Shimmer bar — use on skeleton loaders or decorative lines */
+  @keyframes shimmer {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(100%); }
+  }
+  .animate-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .animate-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+    animation: shimmer 2.2s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* ── Premium Snake & Studio Lighting ──────────────────── */
+
+  /* Snake dash animation */
+  @keyframes snake-cw {
+    from { stroke-dashoffset: 0; }
+    to   { stroke-dashoffset: -2200; }
+  }
+  @keyframes snake-ccw {
+    from { stroke-dashoffset: 0; }
+    to   { stroke-dashoffset: 2200; }
+  }
+
+  /* Outer halo pulse */
+  @keyframes halo-pulse {
+    0%, 100% {
+      box-shadow:
+        0 0 0 1px color-mix(in oklab, var(--primary) 25%, transparent),
+        0 0 22px 4px color-mix(in oklab, var(--primary) 30%, transparent),
+        0 0 55px 12px color-mix(in oklab, var(--primary) 15%, transparent),
+        0 0 95px 22px color-mix(in oklab, var(--primary) 8%, transparent);
+    }
+    50% {
+      box-shadow:
+        0 0 0 2px color-mix(in oklab, var(--primary) 40%, transparent),
+        0 0 30px 8px color-mix(in oklab, var(--primary) 45%, transparent),
+        0 0 75px 20px color-mix(in oklab, var(--primary) 22%, transparent),
+        0 0 120px 35px color-mix(in oklab, var(--primary) 12%, transparent);
+    }
+  }
+
+  /* Corner spark keyframe */
+  @keyframes corner-spark {
+    0%, 100% { opacity: 0.25; transform: scale(0.7); }
+    50%       { opacity: 1;    transform: scale(1.2); }
+  }
+
+  /* Studio shimmer scan */
+  @keyframes scan-light {
+    0%   { transform: translateX(-120%) rotate(35deg); }
+    100% { transform: translateX(220%) rotate(35deg); }
+  }
+
+  /* ── Extra premium lighting keyframes ──────────────────── */
+
+  /* Sweeping horizontal beam */
+  @keyframes beam-sweep {
+    0%   { transform: translateX(-130%) rotate(20deg); opacity: 0; }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translateX(230%) rotate(20deg); opacity: 0; }
+  }
+  .animate-beam-sweep {
+    animation: beam-sweep 6s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  /* Soft ambient breathe — for blob orbs */
+  @keyframes ambient-breathe {
+    0%, 100% { transform: scale(1);    opacity: 0.30; }
+    50%       { transform: scale(1.12); opacity: 0.50; }
+  }
+  .animate-ambient-breathe {
+    animation: ambient-breathe 8s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  /* Halo orbit — rotates a conic-gradient ring */
+  @keyframes halo-orbit {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .animate-halo-orbit {
+    animation: halo-orbit 6s linear infinite;
+    will-change: transform;
+  }
+
+  /* Section top/bottom hairline beam */
+  .section-beam-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, color-mix(in oklab, var(--primary) 40%, transparent) 50%, transparent 100%);
+    pointer-events: none;
+  }
+  .section-beam-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, color-mix(in oklab, var(--primary) 20%, transparent) 50%, transparent 100%);
+    pointer-events: none;
+  }
+
+  /* Studio key-light overlay (top-left radial) */
+  .lighting-key {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse 70% 55% at 12% 12%, color-mix(in oklab, var(--primary) 12%, transparent) 0%, transparent 65%);
+    border-radius: inherit;
+  }
+
+  /* Cool fill-light overlay (bottom-right radial) */
+  .lighting-fill {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse 60% 45% at 88% 88%, rgba(56,189,248,0.07) 0%, transparent 65%);
+    border-radius: inherit;
+  }
+
+  /* Card animated glow border */
+  .card-glow-border {
+    position: relative;
+  }
+  .card-glow-border::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--primary) 55%, transparent) 0%,
+      rgba(56,189,248,0.25) 50%,
+      color-mix(in oklab, var(--primary) 55%, transparent) 100%
+    );
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .card-glow-border:hover::before {
+    opacity: 1;
+  }
+
+  /* Hero image snake container */
+  .snake-border {
+    position: absolute;
+    inset: -2px;
+    pointer-events: none;
+    z-index: 20;
+    border-radius: 2rem;
+  }
+
+  /* Animated halo ring class */
+  .hero-halo {
+    position: absolute;
+    inset: -14px;
+    border-radius: 2.8rem;
+    pointer-events: none;
+    animation: halo-pulse 3s ease-in-out infinite;
+  }
+
+  /* Studio scan sheen on images */
+  .studio-scan {
+    position: relative;
+    overflow: hidden;
+  }
+  .studio-scan::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.07) 50%,
+      transparent 75%
+    );
+    animation: scan-light 5s ease-in-out infinite;
+    animation-delay: 2s;
+    pointer-events: none;
+  }
+
+  /* Utility: shadow-snake */
+  .shadow-snake { box-shadow: var(--shadow-snake); }
+
+  /* ── Scrollbar hide ─────────────────────────────────────── */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* ── Mobile horizontal carousel ────────────────────────── */
+  .mobile-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 1.25rem;
+    padding: 0 1rem 2rem 1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .mobile-scroll-item {
+    flex: 0 0 82vw;
+    max-width: 300px;
+    scroll-snap-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .mobile-scroll-container {
+      padding: 0;
+      margin: 0;
+      overflow-x: visible;
+      display: grid;
+    }
+    .mobile-scroll-item {
+      flex: none;
+      max-width: none;
+    }
+  }
+
+  /* ── GPU perf hints for animated elements ───────────────── */
+  .glass, .card-hover, motion\.div, motion\.article {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+}

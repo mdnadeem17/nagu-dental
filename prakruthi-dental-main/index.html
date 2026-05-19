@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRAKRUTHI DENTAL Specialities — Premium Dental Care</title>
+    <meta name="description" content="Premium modern dental clinic in Kamakshipalya, Bengaluru." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <script>
+      // Disable browser scroll restoration
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      // Clear any saved scroll positions from TanStack Router / sessionStorage
+      try {
+        Object.keys(sessionStorage).forEach(function(key) {
+          if (key.includes('scroll') || key.includes('router') || key.includes('tanstack')) {
+            sessionStorage.removeItem(key);
+          }
+        });
+      } catch(e) {}
+      // Disable smooth scrolling during page load to force instant scroll-to-top
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.documentElement.scrollTop = 0;
+      document.body && (document.body.scrollTop = 0);
+      window.scrollTo(0, 0);
+      // Also fire on DOM ready and full load
+      document.addEventListener('DOMContentLoaded', function() {
+        document.documentElement.scrollTop = 0;
+        window.scrollTo(0, 0);
+      });
+      window.addEventListener('load', function() {
+        document.documentElement.scrollTop = 0;
+        window.scrollTo(0, 0);
+        // Re-enable smooth scrolling after page is fully loaded
+        setTimeout(function() {
+          document.documentElement.style.scrollBehavior = '';
+        }, 500);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
