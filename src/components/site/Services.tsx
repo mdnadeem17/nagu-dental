@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   Sparkles, Stethoscope, Smile, Crown, Wand2, Baby, Brackets, ShieldPlus, ArrowRight,
 } from "lucide-react";
+import { ThreeDTilt } from "./ThreeDTilt";
 
 const services = [
   { icon: Sparkles, title: "Teeth Cleaning", desc: "Professional cleaning that restores brightness and removes plaque safely." },
@@ -76,44 +77,50 @@ export function Services() {
             style={{ scrollBehavior: "smooth" }}
           >
             {services.map((s, idx) => (
-              <motion.article
+              <ThreeDTilt
                 key={s.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="snap-center shrink-0 w-[85vw] md:w-[350px] relative flex flex-col rounded-[2.5rem] bg-surface border border-border/40 p-6 shadow-soft hover:shadow-snake transition-all duration-500 cursor-default overflow-hidden ring-1 ring-primary/5"
+                className="snap-center shrink-0 rounded-[2.5rem] p-0.5"
+                maxTilt={12}
+                scale={1.03}
               >
-                {/* Lighting effects */}
-                <div className="absolute inset-0 bg-radial-[at_20%_20%] from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="size-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border border-primary/20 shadow-inner group-hover:bg-primary group-hover:scale-110 transition-all duration-500">
-                    <s.icon className="size-7 text-primary group-hover:text-white transition-colors duration-500" />
-                  </div>
-
-                  <h3 className="mt-6 font-black text-xl text-foreground group-hover:text-primary transition-colors duration-300">
-                    {s.title}
-                  </h3>
+                <motion.article
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  className="w-[85vw] md:w-[350px] h-[320px] relative flex flex-col rounded-[2.5rem] bg-surface border border-border/40 p-6 shadow-soft hover:shadow-snake transition-all duration-500 cursor-default overflow-hidden ring-1 ring-primary/5"
+                >
+                  {/* Lighting effects */}
+                  <div className="absolute inset-0 bg-radial-[at_20%_20%] from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   
-                  <p className="mt-3 text-muted-foreground text-base leading-relaxed flex-1 font-medium">
-                    {s.desc}
-                  </p>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="size-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border border-primary/20 shadow-inner group-hover:bg-primary group-hover:scale-110 transition-all duration-500">
+                      <s.icon className="size-7 text-primary group-hover:text-white transition-colors duration-500" />
+                    </div>
 
-                  <div className="mt-6 pt-5 border-t border-border/40 flex items-center justify-between">
-                    <a
-                      href="#book"
-                      className="inline-flex items-center gap-2 text-xs font-bold text-primary group-hover:gap-4 transition-all duration-300"
-                    >
-                      Book treatment <ArrowRight className="size-4" />
-                    </a>
-                    <span className="text-3xl font-black text-foreground/5 pointer-events-none group-hover:opacity-20 transition-opacity">
-                      {String(idx + 1).padStart(2, '0')}
-                    </span>
+                    <h3 className="mt-6 font-black text-xl text-foreground group-hover:text-primary transition-colors duration-300">
+                      {s.title}
+                    </h3>
+                    
+                    <p className="mt-3 text-muted-foreground text-sm leading-relaxed flex-1 font-medium overflow-hidden">
+                      {s.desc}
+                    </p>
+
+                    <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between">
+                      <a
+                        href="#book"
+                        className="inline-flex items-center gap-2 text-xs font-bold text-primary group-hover:gap-4 transition-all duration-300"
+                      >
+                        Book treatment <ArrowRight className="size-4" />
+                      </a>
+                      <span className="text-3xl font-black text-foreground/5 pointer-events-none group-hover:opacity-20 transition-opacity">
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="absolute bottom-0 left-0 h-1.5 w-0 group-hover:w-full bg-primary transition-all duration-700 ease-out shadow-[0_0_15px_var(--color-primary)]" />
-              </motion.article>
+                  
+                  <div className="absolute bottom-0 left-0 h-1.5 w-0 group-hover:w-full bg-primary transition-all duration-700 ease-out shadow-[0_0_15px_var(--color-primary)]" />
+                </motion.article>
+              </ThreeDTilt>
             ))}
           </div>
 

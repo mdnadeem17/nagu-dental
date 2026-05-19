@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Cpu, UserCheck, HeartHandshake, BadgeDollarSign, Siren, Sparkles } from "lucide-react";
+import { ThreeDTilt } from "./ThreeDTilt";
 
 const items = [
   { icon: Cpu,             title: "Advanced Technology",   desc: "Digital X-rays, 3D scans, and laser dentistry for precise outcomes." },
@@ -50,14 +51,19 @@ export function WhyChoose() {
         {/* Grid */}
         <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {items.map((it, i) => (
-            <motion.div
+            <ThreeDTilt
               key={it.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.07 }}
-              className="group relative glass rounded-2xl p-5 md:p-6 card-hover overflow-hidden"
+              className="rounded-2xl h-full"
+              maxTilt={10}
+              scale={1.03}
             >
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                className="group relative glass rounded-2xl p-5 md:p-6 card-hover overflow-hidden h-full"
+              >
               {/* Per-card radial spotlight (reveals on hover) */}
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-2xl"
@@ -98,6 +104,7 @@ export function WhyChoose() {
                 </div>
               </div>
             </motion.div>
+          </ThreeDTilt>
           ))}
         </div>
       </div>

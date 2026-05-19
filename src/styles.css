@@ -475,4 +475,32 @@
     backface-visibility: hidden;
     transform: translateZ(0);
   }
+
+  /* ── Mouse Spotlight Border Shine ──────────────────────── */
+  .mouse-light-border {
+    position: relative;
+  }
+  .mouse-light-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: radial-gradient(
+      circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      color-mix(in oklab, var(--primary) 70%, transparent) 0%,
+      transparent 80%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .mouse-light-border:hover::before {
+    opacity: 1;
+  }
 }
+
